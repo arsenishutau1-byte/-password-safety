@@ -104,7 +104,6 @@
   .reveal.from-left{ transform:translateX(-50px); }
   .reveal.from-right{ transform:translateX(50px); }
   .reveal.in-view{ opacity:1; transform:translateX(0); }
-  @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
 </style>
 </head>
 <body>
@@ -388,11 +387,9 @@ async function copyPw(){
 
 window.addEventListener('DOMContentLoaded', () => {
   const targets = document.querySelectorAll('.panel, .breach-box');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   targets.forEach((el, i) => {
     el.classList.add('reveal', i % 2 === 0 ? 'from-left' : 'from-right');
   });
-  if(reduceMotion) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       entry.target.classList.toggle('in-view', entry.isIntersecting);
